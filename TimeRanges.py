@@ -22,6 +22,12 @@ class TimeRanges:
 
     def validate_and_parse(self):
 
+        """
+        Function to parse, validate and megre time ranges
+        :return:
+        True in case of valid and merged ranges
+        """
+
         def overlaps(a, b):
             return a[0] <= b[0] <= a[1]
 
@@ -36,8 +42,6 @@ class TimeRanges:
 
         self.ranges = sorted([[self.__hhmm2minutes(i) for i in rng.split('-')] for rng in self.raw_data.split(',')],
                              key=lambda x: x[0])
-
-        #self.merged_ranges.append(self.ranges[0])
 
         # Validating and merging
         for rng in self.ranges:
